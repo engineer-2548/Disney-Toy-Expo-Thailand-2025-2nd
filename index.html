@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disney Toy Expo Thailand 2025 | centralwOrld</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap');
+        
+        * {
+            font-family: 'Kanit', sans-serif;
+        }
+        
+        body {
+            transition: background-color 0.5s ease;
+        }
+        
+        .dark-mode {
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0e1b 100%);
+            color: #ffffff;
+        }
+        
+        .light-mode {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            animation: gradientShift 10s ease infinite;
+        }
+        
+        .dark .hero-gradient {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+            25% { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+            50% { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+            75% { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(102, 126, 234, 0.8); }
+        }
+        
+        .bounce-in {
+            animation: bounceIn 1s ease-out;
+        }
+        
+        @keyframes bounceIn {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .sparkle {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sparkle::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+            animation: sparkleMove 3s infinite;
+        }
+        
+        @keyframes sparkleMove {
+            0% { transform: translateX(-100%) translateY(-100%); }
+            100% { transform: translateX(100%) translateY(100%); }
+        }
+        
+        .disney-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .disney-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .btn-magical {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-magical::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn-magical:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .countdown-item {
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+            backdrop-filter: blur(10px);
+        }
+        
+        .star-animation {
+            animation: starTwinkle 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes starTwinkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+        
+        .rotate-slow {
+            animation: rotateSlow 20s linear infinite;
+        }
+        
+        @keyframes rotateSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="light-mode min-h-screen">
+    <!-- Theme Toggle Button -->
+    <button id="themeToggle" class="fixed top-4 right-4 z-50 bg-white/20 backdrop-blur-md rounded-full p-3 pulse-glow transition-all hover:scale-110">
+        <i class="fas fa-moon text-2xl" id="themeIcon"></i>
+    </button>
+    
+    <!-- Magical Particles Background -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="star-animation absolute top-10 left-10 text-yellow-300 text-3xl">✨</div>
+        <div class="star-animation absolute top-20 right-20 text-blue-300 text-2xl" style="animation-delay: 0.5s">⭐</div>
+        <div class="star-animation absolute bottom-20 left-20 text-pink-300 text-4xl" style="animation-delay: 1s">✨</div>
+        <div class="star-animation absolute bottom-10 right-10 text-purple-300 text-3xl" style="animation-delay: 1.5s">⭐</div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-white/10 backdrop-blur-md border-b border-white/20">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <span class="text-2xl floating">🏰</span>
+                <span class="font-bold text-xl text-shadow">Disney Toy Expo 2025</span>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#home" class="hover:text-yellow-300 transition-colors">หน้าหลัก</a>
+                <a href="#highlights" class="hover:text-yellow-300 transition-colors">ไฮไลต์</a>
+                <a href="#info" class="hover:text-yellow-300 transition-colors">ข้อมูลงาน</a>
+                <a href="#contact" class="hover:text-yellow-300 transition-colors">ติดต่อ</a>
+            </div>
+            <button id="mobileMenu" class="md:hidden">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div id="mobileMenuPanel" class="fixed inset-0 bg-black/90 z-30 hidden">
+        <div class="flex flex-col items-center justify-center h-full space-y-8 text-2xl">
+            <a href="#home" class="hover:text-yellow-300 transition-colors">หน้าหลัก</a>
+            <a href="#highlights" class="hover:text-yellow-300 transition-colors">ไฮไลต์</a>
+            <a href="#info" class="hover:text-yellow-300 transition-colors">ข้อมูลงาน</a>
+            <a href="#contact" class="hover:text-yellow-300 transition-colors">ติดต่อ</a>
+        </div>
+    </div>
+    
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center hero-gradient pt-20">
+        <div class="container mx-auto px-4 text-center">
+            <div class="bounce-in">
+                <h1 class="text-5xl md:text-7xl font-bold mb-4 text-shadow">
+                    ✨ Disney Toy Expo
+                </h1>
+                <h2 class="text-3xl md:text-5xl font-bold mb-8 text-yellow-300 text-shadow">
+                    Thailand 2025
+                </h2>
+            </div>
+            
+            <!-- Event Image -->
+            <div class="max-w-4xl mx-auto mb-8 slide-up">
+                <img src="https://lh5.googleusercontent.com/d/1Tjwf5aDdogzQreSbd1Ym2zd-rpjWNrZB" 
+                     alt="Disney Toy Expo 2025" 
+                     class="w-full rounded-2xl shadow-2xl disney-card"
+                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'400\'%3E%3Crect fill=\'%23667eea\' width=\'800\' height=\'400\'/%3E%3Ctext fill=\'white\' font-size=\'40\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3EDisney Toy Expo 2025%3C/text%3E%3C/svg%3E'">
+            </div>
+            
+            <!-- Date & Location -->
+            <div class="disney-card rounded-2xl p-6 max-w-2xl mx-auto mb-8 slide-up">
+                <p class="text-2xl md:text-3xl mb-4">
+                    <i class="fas fa-calendar-alt mr-2"></i>
+                    4-7 กันยายน 2568
+                </p>
+                <p class="text-xl md:text-2xl">
+                    <i class="fas fa-map-marker-alt mr-2"></i>
+                    centralwOrld, Bangkok
+                </p>
+            </div>
+            
+            <!-- CTA Buttons -->
+            <div class="flex flex-col md:flex-row gap-4 justify-center slide-up">
+                <button onclick="window.open('https://www.centralworld.co.th/', '_blank')" 
+                        class="btn-magical bg-yellow-400 text-purple-800 px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-300 transform transition-all hover:scale-105 sparkle">
+                    <i class="fas fa-ticket-alt mr-2"></i>
+                    ซื้อบัตรเข้างาน
+                </button>
+                <button onclick="scrollToSection('highlights')" 
+                        class="btn-magical bg-white/20 backdrop-blur-md px-8 py-4 rounded-full font-bold text-lg hover:bg-white/30 transform transition-all hover:scale-105">
+                    <i class="fas fa-info-circle mr-2"></i>
+                    ดูรายละเอียด
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Countdown Timer -->
+    <section class="py-12 bg-gradient-to-r from-purple-600 to-pink-600">
+        <div class="container mx-auto px-4">
+            <h3 class="text-3xl font-bold text-center mb-8 text-shadow">⏰ นับถอยหลังสู่งาน</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+                <div class="countdown-item rounded-xl p-4 text-center">
+                    <div class="text-3xl md:text-4xl font-bold" id="days">00</div>
+                    <div class="text-sm md:text-base">วัน</div>
+                </div>
+                <div class="countdown-item rounded-xl p-4 text-center">
+                    <div class="text-3xl md:text-4xl font-bold" id="hours">00</div>
+                    <div class="text-sm md:text-base">ชั่วโมง</div>
+                </div>
+                <div class="countdown-item rounded-xl p-4 text-center">
+                    <div class="text-3xl md:text-4xl font-bold" id="minutes">00</div>
+                    <div class="text-sm md:text-base">นาที</div>
+                </div>
+                <div class="countdown-item rounded-xl p-4 text-center">
+                    <div class="text-3xl md:text-4xl font-bold" id="seconds">00</div>
+                    <div class="text-sm md:text-base">วินาที</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Highlights Section -->
+    <section id="highlights" class="py-20 bg-gradient-to-b from-blue-600 to-purple-600">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-shadow">
+                💙 ไฮไลต์สุดพิเศษ
+            </h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Highlight Card 1 -->
+                <div class="disney-card rounded-2xl p-6 hover:scale-105 transition-all">
+                    <div class="text-4xl mb-4">🎁</div>
+                    <h3 class="text-2xl font-bold mb-3">Limited Edition</h3>
+                    <p class="text-lg">สินค้าลิมิเต็ดที่มีเฉพาะในงานนี้เท่านั้น พลาดไม่ได้!</p>
+                </div>
+                
+                <!-- Highlight Card 2 -->
+                <div class="disney-card rounded-2xl p-6 hover:scale-105 transition-all">
+                    <div class="text-4xl mb-4">🎪</div>
+                    <h3 class="text-2xl font-bold mb-3">2,000+ รายการ</h3>
+                    <p class="text-lg">ของเล่นและของสะสมลิขสิทธิ์แท้จากแบรนด์ชั้นนำระดับโลก</p>
+                </div>
+                
+                <!-- Highlight Card 3 -->
+                <div class="disney-card rounded-2xl p-6 hover:scale-105 transition-all">
+                    <div class="text-4xl mb-4">📸</div>
+                    <h3 class="text-2xl font-bold mb-3">Meet & Greet</h3>
+                    <p class="text-lg">พบปะตัวละครและมุมถ่ายรูปสุดคิวต์</p>
+                </div>
+                
+                <!-- Highlight Card 4 -->
+                <div class="disney-card rounded-2xl p-6 hover:scale-105 transition-all">
+                    <div class="text-4xl mb-4">🎯</div>
+                    <h3 class="text-2xl font-bold mb-3">โปรโมชั่นพิเศษ</h3>
+                    <p class="text-lg">ดีลเอ็กซ์คลูซีฟจากแบรนด์ไทยและต่างประเทศ</p>
+                </div>
+                
+                <!-- Highlight Card 5 -->
+                <div class="disney-card rounded-2xl p-6 hover:scale-105 transition-all">
+                    <div class="text-4xl mb-4">🏰</div>
+                    <h3 class="text-2xl font-bold mb-3">Disney Magic</h3>
+                    <p class="text-lg">สัมผัสความมหัศจรรย์แบบดิสนีย์เต็มรูปแบบ</p>
+                </div>
+                
+                <!-- Highlight Card 6 -->
+                <div class="disney-card rounded-2xl p-6 hover:scale-105 transition-all">
+                    <div class="text-4xl mb-4">🎉</div>
+                    <h3 class="text-2xl font-bold mb-3">กิจกรรมสนุกๆ</h3>
+                    <p class="text-lg">ร่วมสนุกกับกิจกรรมมากมายตลอดงาน</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Info Section -->
+    <section id="info" class="py-20 bg-gradient-to-r from-pink-500 to-purple-500">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-shadow">
+                    📍 ข้อมูลงาน
+                </h2>
+                
+                <div class="disney-card rounded-2xl p-8">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4">
+                                <i class="fas fa-clock mr-2"></i>เวลาเปิดงาน
+                            </h3>
+                            <p class="text-lg mb-2">วันที่ 4-7 กันยายน 2568</p>
+                            <p class="text-lg">เวลา 10:00 - 21:00 น.</p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4">
+                                <i class="fas fa-building mr-2"></i>สถานที่
+                            </h3>
+                            <p class="text-lg mb-2">centralwOrld</p>
+                            <p class="text-lg">ชั้น 1 Event Hall</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 text-center">
+                        <button onclick="window.open('https://goo.gl/maps/centralworld', '_blank')" 
+                                class="btn-magical bg-blue-500 px-6 py-3 rounded-full font-bold hover:bg-blue-600 transform transition-all hover:scale-105">
+                            <i class="fas fa-map mr-2"></i>
+                            ดูแผนที่
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gradient-to-b from-purple-600 to-indigo-700">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-8 text-shadow">
+                📞 ติดต่อเรา
+            </h2>
+            
+            <div class="flex flex-wrap justify-center gap-4">
+                <button onclick="window.open('https://facebook.com/DisneyThailand', '_blank')" 
+                        class="btn-magical bg-blue-600 px-6 py-3 rounded-full font-bold hover:bg-blue-700 transform transition-all hover:scale-105">
+                    <i class="fab fa-facebook mr-2"></i>
+                    Facebook
+                </button>
+                
+                <button onclick="window.open('https://instagram.com/disneythailand', '_blank')" 
+                        class="btn-magical bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-3 rounded-full font-bold hover:opacity-90 transform transition-all hover:scale-105">
+                    <i class="fab fa-instagram mr-2"></i>
+                    Instagram
+                </button>
+                
+                <button onclick="window.open('https://twitter.com/DisneyThailand', '_blank')" 
+                        class="btn-magical bg-black px-6 py-3 rounded-full font-bold hover:bg-gray-800 transform transition-all hover:scale-105">
+                    <i class="fab fa-x-twitter mr-2"></i>
+                    X (Twitter)
+                </button>
+                
+                <button onclick="window.location.href='tel:021234567'" 
+                        class="btn-magical bg-green-600 px-6 py-3 rounded-full font-bold hover:bg-green-700 transform transition-all hover:scale-105">
+                    <i class="fas fa-phone mr-2"></i>
+                    02-123-4567
+                </button>
+            </div>
+            
+            <div class="mt-12">
+                <p class="text-xl">
+                    #Disney #ToyExpo #Thailand #DTX2025 #centralwOrld
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-black/50 backdrop-blur-md py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-lg">© 2025 Disney Toy Expo Thailand. All Rights Reserved.</p>
+            <p class="mt-2">Made with ❤️ for Disney Fans</p>
+        </div>
+    </footer>
+    
+    <!-- Floating Action Button -->
+    <button onclick="scrollToTop()" 
+            class="fixed bottom-8 right-8 bg-yellow-400 text-purple-800 rounded-full p-4 shadow-2xl hover:bg-yellow-300 transform transition-all hover:scale-110 pulse-glow z-40">
+        <i class="fas fa-arrow-up text-xl"></i>
+    </button>
+    
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const body = document.body;
+        let isDarkMode = false;
+        
+        themeToggle.addEventListener('click', () => {
+            isDarkMode = !isDarkMode;
+            if (isDarkMode) {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        });
+        
+        // Mobile Menu
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuPanel = document.getElementById('mobileMenuPanel');
+        
+        mobileMenu.addEventListener('click', () => {
+            mobileMenuPanel.classList.toggle('hidden');
+        });
+        
+        mobileMenuPanel.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                mobileMenuPanel.classList.add('hidden');
+            }
+        });
+        
+        // Countdown Timer
+        function updateCountdown() {
+            const eventDate = new Date('2025-09-04T10:00:00');
+            const now = new Date();
+            const difference = eventDate - now;
+            
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+                
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            } else {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+            }
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // Smooth Scroll
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // Add parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero-gradient');
+            if (parallax) {
+                parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+        
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('slide-up');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.disney-card').forEach(card => {
+            observer.observe(card);
+        });
+        
+        // Random sparkle effects
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.innerHTML = '✨';
+            sparkle.style.position = 'fixed';
+            sparkle.style.left = Math.random() * window.innerWidth + 'px';
+            sparkle.style.top = Math.random() * window.innerHeight + 'px';
+            sparkle.style.fontSize = Math.random() * 20 + 10 + 'px';
+            sparkle.style.pointerEvents = 'none';
+            sparkle.style.animation = 'starTwinkle 2s ease-in-out';
+            sparkle.style.zIndex = '999';
+            
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 2000);
+        }
+        
+        setInterval(createSparkle, 3000);
+        
+        // Console Easter Egg
+        console.log('%c🏰 Welcome to Disney Toy Expo Thailand 2025! 🎪', 
+                    'font-size: 20px; color: #667eea; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);');
+        console.log('%c✨ Where Magic Comes to Life! ✨', 
+                    'font-size: 16px; color: #f093fb; font-style: italic;');
+    </script>
+</body>
+</html>
